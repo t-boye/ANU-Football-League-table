@@ -1,0 +1,49 @@
+{
+    "players": [
+        {
+            "id": 1,
+            "name": "Lion el Messi",
+            "position": "Forward",
+            "team": "Inter Miami",
+            "age": 37,
+            "nationality": "Argentinian",
+            "height": "1.70 m",
+            "weight": "72 kg",
+            "stats": {
+                "matches": 100,
+                "goals": 80,
+                "assists": 30
+            }
+        },
+        {
+            "id": 2,
+            "name": "Cristiano Ronaldo",
+            "position": "Forward",
+            "team": "Al Nassr",
+            "age": 39,
+            "nationality": "Portuguese",
+            "height": "1.87 m",
+            "weight": "83 kg",
+            "stats": {
+                "matches": 120,
+                "goals": 90,
+                "assists": 25
+            }
+        },
+        {
+            "id": 3,
+            "name": "Neymar Jr.",
+            "position": "Forward",
+            "team": "Al Hilal",
+            "age": 32,
+            "nationality": "Brazilian",
+            "height": "1.75 m",
+            "weight": "68 kg",
+            "stats": {
+                "matches": 110,
+                "goals": 70,
+                "assists": 40
+            }
+        }
+    ]
+}
