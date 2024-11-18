@@ -1,5 +1,6 @@
 // src/components/Players.js
 import React, { useState, useEffect } from 'react';
+import { getPlayers } from '../services/api'; // Import the API function
 
 const Players = () => {
   const [players, setPlayers] = useState([]);
@@ -8,12 +9,8 @@ const Players = () => {
 
   const fetchPlayers = async () => {
     try {
-      const response = await fetch('/data/players.json'); // Adjust the path as necessary
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
-      setPlayers(data.players);
+      const data = await getPlayers(); // Fetch players from the API
+      setPlayers(data.players); // Adjust based on your API response structure
     } catch (error) {
       setError(error.message);
     } finally {

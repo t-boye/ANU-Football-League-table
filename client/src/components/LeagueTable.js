@@ -1,7 +1,7 @@
 // src/components/LeagueTable.js
 import React from 'react';
 
-const LeagueTable = ({ teams }) => {
+const LeagueTable = ({ teams = [] }) => { // Default to an empty array if teams is undefined
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full border border-gray-300">
@@ -19,19 +19,27 @@ const LeagueTable = ({ teams }) => {
           </tr>
         </thead>
         <tbody>
-          {teams.map((team, index) => (
-            <tr key={index} className="hover:bg-gray-100">
-              <td className="border border-gray-300 p-2">{team.name}</td>
-              <td className="border border-gray-300 p-2">{team.played}</td>
-              <td className="border border-gray-300 p-2">{team.wins}</td>
-              <td className="border border-gray-300 p-2">{team.draws}</td>
-              <td className="border border-gray-300 p-2">{team.losses}</td>
-              <td className="border border-gray-300 p-2">{team.goalsScored}</td>
-              <td className="border border-gray-300 p-2">{team.goalsConceded}</td>
-              <td className="border border-gray-300 p-2">{team.goalDifference}</td>
-              <td className="border border-gray-300 p-2">{team.points}</td>
+          {teams.length > 0 ? ( // Check if teams has any items
+            teams.map((team, index) => (
+              <tr key={index} className="hover:bg-gray-100">
+                <td className="border border-gray-300 p-2">{team.name}</td>
+                <td className="border border-gray-300 p-2">{team.played}</td>
+                <td className="border border-gray-300 p-2">{team.wins}</td>
+                <td className="border border-gray-300 p-2">{team.draws}</td>
+                <td className="border border-gray-300 p-2">{team.losses}</td>
+                <td className="border border-gray-300 p-2">{team.goalsScored}</td>
+                <td className="border border-gray-300 p-2">{team.goalsConceded}</td>
+                <td className="border border-gray-300 p-2">{team.goalDifference}</td>
+                <td className="border border-gray-300 p-2">{team.points}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="9" className="border border-gray-300 p-2 text-center">
+                No teams available
+              </td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>

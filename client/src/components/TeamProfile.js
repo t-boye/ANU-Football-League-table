@@ -2,18 +2,22 @@
 import React from 'react';
 
 const TeamProfile = ({ team }) => {
+  // Check if team is defined and has the expected properties
+  if (!team) {
+    return <div>No team data available</div>; // Fallback UI
+  }
+
   return (
-    <div className="mt-4 p-4 border border-gray-300 rounded-lg">
-      <h2 className="text-2xl font-bold">{team.name}</h2>
-      <p className="mt-2"><strong>Coach:</strong> {team.coach}</p>
-      <p className="mt-2"><strong>Founded:</strong> {team.founded}</p>
-      <p className="mt-2"><strong>Stadium:</strong> {team.stadium}</p>
-      <h3 className="mt-4 text-xl font-semibold">Players:</h3>
-      <ul className="list-disc pl-5">
-        {team.players.map((player, index) => (
-          <li key={index} className="mt-1">{player.name} - {player.position}</li>
-        ))}
-      </ul>
+    <div>
+      <h1>{team.name}</h1> {/* Accessing team.name safely */}
+      <p>Played: {team.played}</p>
+      <p>Wins: {team.wins}</p>
+      <p>Draws: {team.draws}</p>
+      <p>Losses: {team.losses}</p>
+      <p>Goals Scored: {team.goalsScored}</p>
+      <p>Goals Conceded: {team.goalsConceded}</p>
+      <p>Goal Difference: {team.goalDifference}</p>
+      <p>Points: {team.points}</p>
     </div>
   );
 };
