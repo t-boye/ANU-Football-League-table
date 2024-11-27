@@ -2,7 +2,7 @@ import React from 'react';
 
 const UpcomingMatches = () => {
   return (
-    <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-6 rounded-xl shadow-lg">
+    <div className="bg-gradient-to-r from-yellow-500 via-grey-500 to-blue-500 p-6 rounded-xl shadow-lg">
       <h2 className="text-3xl font-extrabold text-white mb-4 border-b-2 border-white pb-2">Upcoming Matches</h2>
       <ul className="space-y-4">
         <li className="bg-white/90 p-4 rounded-lg shadow hover:shadow-md transition-shadow">

@@ -11,7 +11,7 @@ import Advertisements from '../components/Advertisements'; // New Advertisements
 
 const Home = () => {
     return (
-        <div className="flex p-4">
+        <div className="flex p-16">
             <div className="flex-1 mr-4">
                 {/* Hero Component */}
                 <Hero />
@@ -19,9 +19,6 @@ const Home = () => {
                 {/* Upcoming Matches Component */}
                 <UpcomingMatches />
 
-
-                {/* Score Input Component */}
-                <ScoreInput />
 
                 {/* League Table Component */}
                 <LeagueTable />
