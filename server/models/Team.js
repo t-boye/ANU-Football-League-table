@@ -1,14 +1,6 @@
 // server/models/Team.js
 const mongoose = require('mongoose');
 
-const PlayerSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  position: { type: String, required: true },
-  photo: { type: String, required: true },
-  goals: { type: Number, default: 0 },
-  assists: { type: Number, default: 0 },
-});
-
 const TeamSchema = new mongoose.Schema({
   name: { type: String, required: true },
   points: { type: Number, default: 0 },

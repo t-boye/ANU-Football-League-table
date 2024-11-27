@@ -1,38 +1,49 @@
-// src/components/Players.js
-import React, { useState, useEffect } from 'react';
-import { getPlayers } from '../services/api'; // Import the API function
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Players = () => {
-  const [players, setPlayers] = useState([]);
+  const [players, setPlayers] = useState([]); // Initialize as an empty array
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchPlayers = async () => {
-    try {
-      const data = await getPlayers(); // Fetch players from the API
-      setPlayers(data.players); // Adjust based on your API response structure
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchPlayers = async () => {
+      try {
+        const response = await axios.get('/api/players'); // Adjust the endpoint as necessary
+        setPlayers(response.data);
+      } catch (err) {
+        console.error('Error fetching players:', err);
+        setError('Failed to load players. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchPlayers();
   }, []);
 
-  if (loading) return <p>Loading players...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="text-red-500">{error}</div>;
+  }
 
   return (
-    <div className="mt-4">
-      <h3 className="text-xl font-bold">Players</h3>
-      <ul className="list-disc pl-5">
-        {players.map((player) => (
-          <li key={player.id} className="mt-1">{player.name} - {player.position}</li>
-        ))}
-      </ul>
+    <div>
+      <h2 className="text-xl font-bold">Players List</h2>
+      {players.length === 0 ? (
+        <p>No players found.</p>
+      ) : (
+        <ul>
+          {players.map((player) => (
+            <li key={player.id} className="py-2">
+              {player.name} - {player.position}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

@@ -1,41 +1,38 @@
 // src/components/AddTeam.js
-import React, { useState } from 'react';
+import React from 'react';
+import axios from 'axios';
+
+const predefinedTeams = [
+    { name: 'Lvl 100', city: 'City A', established: 2020 },
+    { name: 'Lvl 200', city: 'City B', established: 2021 },
+    { name: 'Lvl 300', city: 'City C', established: 2022 },
+    { name: 'Lvl 400', city: 'City D', established: 2023 },
+];
 
 const AddTeam = () => {
-  const [name, setName] = useState('');
-  const [city, setCity] = useState('');
+    const handleSubmit = async (team) => {
+        try {
+            const response = await axios.post('http://localhost:3000/api/teams', team);
+            console.log('Team added:', response.data);
+        } catch (error) {
+            console.error('Error adding team:', error);
+        }
+    };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await fetch('/api/teams', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, city })
-    });
-    if (response.ok) {
-      // Handle success (e.g., reset form, show message)
-    }
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Team Name"
-        required
-      />
-      <input
-        type="text"
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-        placeholder="City"
-        required
-      />
-      <button type="submit">Add Team</button>
-    </form>
-  );
+    return (
+        <div>
+            <h2>Add Team</h2>
+            <ul>
+                {predefinedTeams.map((team) => (
+                    <li key={team.name}>
+                        <button onClick={() => handleSubmit(team)}>
+                            Add {team.name}
+                        </button>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
 };
 
 export default AddTeam;
